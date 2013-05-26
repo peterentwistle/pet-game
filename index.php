@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 function __autoload($class_name) {
 	$classes = 'classes/'.$class_name . '.php';
 	$classes_animals = 'classes/animals/'.$class_name . '.php';
@@ -58,29 +55,32 @@ function interact($animalName, $chosenAnimal) {
 if (isset($_POST['cmd'])) {
 	// Need to set variables from our session
 	$chosenAnimal = $_SESSION['a'];
-	$animalName = $_SESSION['name'];
-	echo interact($animalName, $chosenAnimal);
+	if (isset($_SESSION['name'])) {
+		$animalName = $_SESSION['name'];
 
-	$cmd = strip_tags($_POST['cmd']);
-	// If the entered data starts with '/' remove it and run the function it needs
-	if ($cmd[0] == '/') {
-		$cmd = substr($cmd , 1);
-		$commandList = $chosenAnimal::listActions();
+		echo interact($animalName, $chosenAnimal);
 
-		if ($cmd == 'help') {
-			$commands = new Commands;
-			$commands->$cmd($chosenAnimal);
-		} elseif (in_array($cmd, $commandList)) {
-			$commands = new Commands;
-			$chosenAnimal::$cmd($animalName);
+		$cmd = strip_tags($_POST['cmd']);
+		// If the entered data starts with '/' remove it and run the function it needs
+		if ($cmd[0] == '/') {
+			$cmd = substr($cmd , 1);
+			$commandList = $chosenAnimal::listActions();
+
+			if ($cmd == 'help') {
+				$commands = new Commands;
+				$commands->$cmd($chosenAnimal);
+			} elseif (in_array($cmd, $commandList)) {
+				$commands = new Commands;
+				$chosenAnimal::$cmd($animalName);
+			} else {
+				echo "Sorry that command is not recognised.<br />
+					Please type /help for a list of commands.";
+			}
+
 		} else {
-			echo "Sorry that command is not recognised.<br />
+			echo "At the moment only commands that start with '/' are supported.<br />
 				Please type /help for a list of commands.";
 		}
-
-	} else {
-		echo "At the moment only commands that start with '/' are supported.<br />
-			Please type /help for a list of commands.";
 	}
 
 } elseif (isset($_POST['name'], $_GET['a'])) {
