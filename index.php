@@ -44,12 +44,6 @@ if (isset($_GET['a'])) {
 	}
 }
 
-/*
-$dog1 = new Dog("Ozzy");
-echo $dog1->name;
-echo " says: ";
-Dog::bark();
-*/
 function interact($animalName, $chosenAnimal) {
 	echo "<h1>Enter a command to interact with your pet.</h1>
 	<h2>You are interacting with ".$animalName." the ".$chosenAnimal.".</h2>
