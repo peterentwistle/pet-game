@@ -42,13 +42,20 @@ if (isset($_GET['a'])) {
 }
 
 function interact($animalName, $chosenAnimal) {
-	echo "<h1>Enter a command to interact with your pet.</h1>
-	<h2>You are interacting with ".$animalName." the ".$chosenAnimal.".</h2>
-	<p>(Type /help to get the list of commands)</p>
-	<form action='' method='post'>Command:
-		<input type='text' name='cmd'>
-		<input type='submit'>
-	</form>";
+	echo "
+	<html>
+	<head>
+		<title>PetGame - Interact with ".$animalName."</title>
+	</head>
+	<body>
+		<h1>Enter a command to interact with your pet.</h1>
+		<h2>You are interacting with ".$animalName." the ".$chosenAnimal.".</h2>
+		<p>(Type /help to get the list of commands)</p>
+		<form action='' method='post'>Command:
+			<input type='text' name='cmd'>
+			<input type='submit'>
+		</form>
+	</body>";
 }
 
 // Do the command that was posted
@@ -106,11 +113,11 @@ if (isset($_POST['cmd'])) {
 ?>
 <html>
 <head>
-	<title>Simple PHP Game</title>
+	<title>PetGame</title>
 </head>
 
 <body>
-<h1>Simple PHP Game</h1>
+<h1>PetGame</h1>
 <p>
 <?php
 
