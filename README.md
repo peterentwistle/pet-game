@@ -3,7 +3,7 @@ PetGame
 
 A simple PHP web app. Choose a pet then interact with it.
 
-*View the [example](http://pet-game.herokuapp.com).*
+*View the [example](http://petgame.peterentwistle.co.uk) finished web application.*
 
 ##Requirements 
 - PHP version 5.3+
