@@ -68,8 +68,12 @@ if (isset($_POST['cmd'])) {
 		echo interact($animalName, $chosenAnimal);
 
 		$cmd = strip_tags($_POST['cmd']);
+		if ($cmd == '') {
+			echo "You didn't enter anything!";
+			unset($cmd);
+		}
 		// If the entered data starts with '/' remove it and run the function it needs
-		if ($cmd[0] == '/') {
+		elseif ($cmd[0] == '/') {
 			$cmd = substr($cmd , 1);
 			$commandList = $chosenAnimal::listActions();
 
@@ -77,7 +81,6 @@ if (isset($_POST['cmd'])) {
 				$commands = new Commands;
 				$commands->$cmd($chosenAnimal);
 			} elseif (in_array($cmd, $commandList)) {
-				$commands = new Commands;
 				$chosenAnimal::$cmd($animalName);
 			} else {
 				echo "Sorry that command is not recognised.<br />
@@ -142,8 +145,8 @@ if (isset($_GET['error'])) {
 				echo "<option value='".$animals[$i]."'>".$animals[$i]."</option>";
 			}
 		?>
-		<input type="submit" value="Choose your animal!">
 	</select>
+	<input type="submit" value="Choose your animal!" />
 </form>
 </body>
 </html>
