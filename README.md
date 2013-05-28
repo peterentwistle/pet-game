@@ -21,3 +21,7 @@ No additional configuration is necessary.
 
 ##Contributors
 [Peter Entwistle](http://peterentwistle.co.uk) is the main contributor.
+
+##License
+
+See [LICENSE](https://github.com/peterentwistle/pet-game/blob/master/LICENSE).
